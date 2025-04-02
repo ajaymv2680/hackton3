@@ -1,0 +1,5 @@
+<%= turbo_stream.replace dom_id(@task) do %>
+  <%= render @task %>
+<% end %>
+<turbo-frame id="modal">
+</turbo-frame>

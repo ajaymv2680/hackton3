@@ -1,0 +1,28 @@
+<%= turbo_frame_tag dom_id(task, task.persisted? ? "edit" : "new") do %>
+  <div class="fixed inset-0 modal-content flex items-center justify-center z-50" data-controller="tasks" data-modal-target="modal">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+      <h2 class="text-lg font-semibold text-gray-800 mb-4">
+        <%= task.persisted? ? "Edit Task" : "Create Task" %>
+      </h2>
+      <div data-form-validation-target="error" class="text-red-500 mb-4"></div>
+      <%= form_with model: task, url: task.persisted? ? task_path(task) : tasks_path, method: task.persisted? ? :patch : :post, local: false, class: "space-y-4", data: { action: "submit->tasks#validate" } do |f| %>
+        <div>
+          <%= f.label :title, class: "block text-sm font-semibold text-gray-700" %>
+          <%= f.text_field :title, class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500", data: { tasks_validation_target: "title" } %>
+        </div>
+        <div>
+          <%= f.label :description, class: "block text-sm font-semibold text-gray-700" %>
+          <%= f.text_area :description, rows: 3, class: "mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500", data: { tasks_validation_target: "description" } %>
+        </div>
+        <div class="flex justify-end space-x-3">
+          <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition">
+            <%= task.persisted? ? "Update Task" : "Save Task" %>
+          </button>
+          <button type="button" data-action="click->tasks#closeModal" class="bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition">
+            Cancel
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

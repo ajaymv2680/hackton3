@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TaskManagerHackton</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <main class="container mx-auto mt-20 px-5 flex">
+      <%= yield %>
+    </main>
+    <div id="notifications" class="fixed top-4 right-4 space-y-2 z-50" data-controller="notification">
+      <%= turbo_stream_from "notifications" %>
+    </div>
+    <turbo-frame id="modal"></turbo-frame>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ .task {
+  background-color: #f4f5f7; /* Light background similar to Jira */
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.task:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle hover effect */
+}
+
+.task .card-title {
+  font-size: 1rem;
+}
+
+.task .badge {
+  font-size: 0.75rem;
+  padding: 0.4em 0.6em;
+}
+
+.task .btn {
+  font-size: 0.8rem;
+}
+
+#modal:has(.modal-content) {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50; /* Ensures it appears on top */
+}
+
+.modal-content {
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.3s ease-out;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

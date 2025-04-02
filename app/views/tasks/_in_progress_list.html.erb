@@ -1,0 +1,11 @@
+<div id="tasks_in_progress" class="border border-gray-100 p-4 rounded-lg shadow-md">
+  <h2 class="text-xl font-semibold text-gray-800 mb-4">
+    In Progress (<%= tasks.select { |task| task.status == "In Progress" }.count %>/<%= tasks.count %>)
+  </h2>
+  <%= turbo_stream_from "tasks_in_progress" %>
+  <div  class="space-y-4">
+    <% tasks.select { |task| task.status == "In Progress" }.each do |task| %>
+      <%= render partial: "tasks/task", locals: { task: task } %>
+    <% end %>
+  </div>
+</div>

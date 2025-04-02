@@ -1,0 +1,28 @@
+<div class='flex flex-col w-full'>
+  <div class='flex flex-col justify-end w-full justify-between  items-center'>
+    <div class='flex items-center justify-between w-full'>
+      <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-6 w-full text-center">Task Manager</h1>
+      <%= link_to "+ New Task", new_task_path, data: { turbo_frame: "modal" }, class: "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md whitespace-nowrap transition-all" %>
+    </div>
+    <div id="progress-bar" class="w-full bg-gray-200 rounded-lg overflow-hidden mb-6">
+      <div class="bg-green-500 text-white text-sm font-bold text-center py-1 whitespace-nowrap" style="width: <%= completed_percentage %>%;">
+        <%= completed_tasks_count %>/<%= total_tasks_count %> Tasks Completed (<%= completed_percentage %>%)
+      </div>
+    </div>
+  </div>
+  <div class="min-h-screen bg-gray-100 w-full py-10">
+    <div class="max-w-7xl mx-auto bg-white shadow-lg rounded-lg p-6">
+      <div id="tasks" class="mt-6 h-full overflow-y-auto">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Your Tasks</h2>
+        <p class="text-sm text-gray-600 mb-4">Manage your tasks efficiently.</p>
+        <%= turbo_stream_from "tasks" %>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <%= render partial: "tasks/to_do_list", locals: { tasks: @tasks } %>
+        <%= render partial: "tasks/in_progress_list", locals: { tasks: @tasks } %>
+        <%= render partial: "tasks/completed_list", locals: { tasks: @tasks } %>
+        </div>
+      </div>
+      <%= turbo_frame_tag "task_form" %>
+    </div>
+  </div>
+</div>

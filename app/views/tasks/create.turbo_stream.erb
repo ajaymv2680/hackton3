@@ -1,0 +1,6 @@
+<%= turbo_stream.append "tasks_to_do" do %>
+  <%= render @task %>
+<% end %>
+<turbo-frame id="modal">
+  <%= render "tasks/form", task: @task %>
+</turbo-frame>

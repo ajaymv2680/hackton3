@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "progress-bar" do %>
+  <%= render partial: "tasks/progress_bar", locals: { tasks: @tasks } %>
+<% end %>
